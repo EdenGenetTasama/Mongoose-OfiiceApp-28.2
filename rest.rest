@@ -1,6 +1,16 @@
 # GET http://localhost:6000/api
-# GET http://localhost:6000/api/621cc2d2fe679aecf669d5a7
-
-
+# GET http://localhost:6000/api/621cc97016fa04f873832856
 # POST http://localhost:6000/api/
+
+PUT http://localhost:6000/api/621cc97016fa04f873832856
+Content-Type: application/json
+
+
+{
+    "firstName": "Eden", 
+    "lastName": "Tasama",
+    "age": 25,
+    "email" : "lalala"
+}
+
 

@@ -5,7 +5,9 @@ const Employee = new schema(
   {
     firstName: String,
     lastName: { type: String, require: false },
-    email: Number
+    email: String,
+    age: Number,
+
   },
   { timestamps: true }
 )
