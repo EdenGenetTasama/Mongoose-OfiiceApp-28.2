@@ -1,3 +1,6 @@
-GET http://localhost:6000/api/621cc2d2fe679aecf669d5a7
+# GET http://localhost:6000/api
+# GET http://localhost:6000/api/621cc2d2fe679aecf669d5a7
+
 
 # POST http://localhost:6000/api/
+

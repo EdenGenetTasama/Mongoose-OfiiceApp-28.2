@@ -8,20 +8,26 @@ const getAll = async (req, res) => {
 }
 
 const getById = async (req, res) => {
-   await employees.findById(_id === req.params.id , (err, result)=>{
+   await employees.findById(req.params.id , (err, result)=>{
     if(err) return res.status(404).send({massage: err})
     res.send(result);
     }).clone();
 }
 
-const postMethod = (req, res) => {
-    employees.create(req.body, (err,result)=>{
+const postMethod = async (req, res) => {
+  await  employees.create(req.body, (err,result)=>{
         if(err) return res.status(404).send({ massage: err })
         res.send(result)
-    }) 
+    }).clone();
 }
 
-const putMethod = (req, res) => {}
+const putMethod = (req, res) => {
+    employees.findById(req.params.id, (req, result)=>{
+        if(err) return res.status(404).send({massage:err})
+        result = req.body;
+        res.send(result)
+    })
+}
 
 const deleteMethod = (req, res) => {}
 
