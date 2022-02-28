@@ -32,6 +32,14 @@ const putMethod = (req, res) => {
     .catch(err => console.log(err))
 }
 
-const deleteMethod = (req, res) => {}
+const deleteMethod = (req, res) => {
+  employees
+    .findByIdAndDelete(req.params.id, req.body)
+    .then(result =>
+      res
+        .send(`Delete ${req.params.id}`)
+        .catch(err => res.status(404).send({ massage: err }))
+    )
+}
 
 module.exports = { getAll, getById, postMethod, putMethod, deleteMethod }
