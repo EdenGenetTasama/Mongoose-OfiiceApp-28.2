@@ -1,21 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../Controllers/office-controller.js')
+const controllersEmployee = require('../Controllers/office-controller.js');
+
 //get:
 
-router.get('/', controllers.getAll);
+router.get('/', controllersEmployee.getAll);
 
-router.get('/:id',controllers.getById);
+router.get('/:id',controllersEmployee.getById);
 
 //post
 
-router.post('/',controllers.postMethod);
+router.post('/',controllersEmployee.postMethod);
 
 //put:
 
-router.put('/:id',controllers.putMethod);
+router.put('/:id',controllersEmployee.putMethod);
 
 //delete
-router.delete('/:id',controllers.deleteMethod);
+router.delete('/:id',controllersEmployee.deleteMethod);
 
 module.exports = router;
