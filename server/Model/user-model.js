@@ -3,10 +3,10 @@ const schema = mongoose.Schema
 
 const Users = new schema(
   {
-    firstName: { type: string, required },
-    lastName: { type: string, required },
-    email: { type: string, required },
-    password: { type: string, required },
+    firstName: { type: String, require:true },
+    lastName: { type: String, require:true },
+    email: { type: String, require:true },
+    password: { type: String, require:true },
     lastLogin: { type: Date, default: Date.now },
     isConnect: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false }
