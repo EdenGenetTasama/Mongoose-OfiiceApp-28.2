@@ -1,5 +1,6 @@
 const users = require('../Model/user-model')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   register: async (req, res) => {
@@ -14,15 +15,22 @@ module.exports = {
         .catch(err => res.status(404).send({ massage: err }))
     })
   },
-  login: (req , res) => {
-    {
-      if (users.exists(req.body.email) == false)return res.status(400).json({ massage: `Error, Email exist already` })
-      const {email , password} = req.body;
-      const user = users.find(user=> user.email === email);
-      bcrypt.compare(password , user.password , (err, isMatch)=>{
-        if(err) return res.status(403).json({massage:"Error"});
-        if(!isMatch) res.status(404).json({massage:"Passport is incorrect"});
+  login: async (req, res) => {
+    if (users.exists(req.body.email) == false)
+      return res.status(400).json({ message: 'Email not found' })
+    try {
+      const user = await users.findOne({ email: req.body.email })
+      bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+        if (err) return res.status(500).json({ message: 'Error' })
+        if (!isMatch)
+          return res.status(400).json({ message: 'Password incorrect' })
+        const token = jwt.sign({ user }, process.env.SECRET_KEY, {
+          expiresIn: '1h'
+        })
+        return res.status(200).json({ message: 'Login successful', token })
       })
+    } catch (err) {
+      return res.status(500).json(err)
     }
   }
 }
