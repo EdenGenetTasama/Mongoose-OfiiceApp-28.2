@@ -9,11 +9,14 @@ option.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 module.exports = passport => {
   passport.use(
     new JwtStrategy(option, (object_payload, done) => {
+      console.log(object_payload)
       users
-        .findOne({ _id: object_payload._id })
+        .findById(object_payload.user._id)
         .then(user => {
-          if (user) done(null, user)
-          done(null, false)
+          if (user) {
+            return done(null, user)
+          }
+          return done(null, false)
         })
         .catch(err => done(err, false))
     })
