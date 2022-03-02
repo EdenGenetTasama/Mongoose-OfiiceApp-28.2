@@ -1,14 +1,13 @@
-const users = require('../Model/user-model');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
+const users = require('../Model/user-model')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 debugger
 module.exports = {
   register: async (req, res) => {
-    console.log(req.body);
-    if(users.exists(req.body.email) === true) {
-      console.log(req.body.email);
+    console.log(req.body)
+    if (users.exists(req.body.email) === true) {
+      console.log(req.body.email)
       return res.status(400).json({ massage: `Error, Email exist already` })
     } else {
       bcrypt.hash(req.body.password, 10, async (errHash, hashPassword) => {
@@ -39,4 +38,5 @@ module.exports = {
       return res.status(500).json(err)
     }
   }
+ 
 }
