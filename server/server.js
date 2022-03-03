@@ -4,7 +4,7 @@ require('./DB/officeDB')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const port = 8000
+const port =process.env.PORT || 8000
 const employeeRouter = require('./Routes/office-route.js')
 const userRouter = require('./Routes/user-route')
 const path = require('path')
