@@ -28,7 +28,7 @@ app.use(
   employeeRouter
 )
 
-//פונקציה שעוברת לנו לבדוק מה הנתב ש
+//פונקציה שעוברת לנו לבדוק קשר בין סביבות
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join('client/build')))
